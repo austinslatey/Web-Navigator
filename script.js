@@ -9,20 +9,6 @@ const prompt = require("prompt-sync")();
 // Helper Functions
 // ------------------------------
 
-/*
- * The following strings are used to prompt the user
- */
-
-const baseInfo = "\nEnter a url";
-const backInfo = "B|b for back page";
-const nextInfo = "N|n for next page";
-const quitInfo = "Q|q for quit";
-const question = "Where would you like to go today? ";
-
-// ------------------------------
-// User Interface Part 1
-// ------------------------------
-
 const backPages = new Stack();
 const nextPages = new Stack();
 var currentPage = "Start Page";
@@ -48,14 +34,39 @@ const newPage = (page) => {
 };
 
 const backPage = () => {
-    currentPage.push(nextPages);
-    backPages.pop(backPages);
-    console.log(`This is the new current page ${currentPage}`);
+  currentPage.push(nextPages);
+  backPages.pop();
+  showCurrentPage("BACK: ");
 }
 
 const nextPage = () => {
-  
+  currentPage.push(backPage);
+  nextPages.pop();
+  showCurrentPage("NEXT: ");
+
 }
+
+
+/*
+ * The following strings are used to prompt the user
+ */
+
+const baseInfo = "\nEnter a url";
+const backInfo = "B|b for back page";
+const nextInfo = "N|n for next page";
+const quitInfo = "Q|q for quit";
+const question = "Where would you like to go today? ";
+
+
+
+
+
+
+// ------------------------------
+// User Interface Part 1
+// ------------------------------
+
+
 
 // ------------------------------
 // User Interface Part 2
